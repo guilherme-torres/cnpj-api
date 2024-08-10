@@ -1,9 +1,6 @@
 package pge.cnpj_api.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "socios")
@@ -49,6 +46,14 @@ public class Partner {
     @ManyToOne
     @JoinColumn(name = "faixa_etaria")
     private AgeGroup ageGroup;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getBasicCnpj() {
         return basicCnpj;
