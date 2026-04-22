@@ -1,6 +1,8 @@
 from datetime import datetime
 import logging
+import asyncio
 from feed_database import FeedDatabase
+from downloader import Downloader
 
 
 logging.basicConfig(
@@ -10,6 +12,9 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
+
+# downloader = Downloader()
+# asyncio.run(downloader.execute())
 
 feed_database = FeedDatabase()
 logger.info(f"starting to feed the database...")

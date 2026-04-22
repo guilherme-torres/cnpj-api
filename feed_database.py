@@ -22,6 +22,7 @@ class FeedDatabase:
         ]
         self.DATABASE_FILE = "cnpj.db"
         self.TABLES_FILE = "tables.sql"
+        self.INDEXES_FILE = "indexes.sql"
         self.BATCH_SIZE = 10_000
         self.DATA_DIR = "data"
         self.QUERIES = {
@@ -118,6 +119,15 @@ class FeedDatabase:
                     cursor.executemany(query_info["query"], batch)
                     conn.commit()
 
+    def _create_indexes(self):
+        logger.info("creating indexes...")
+        with open(self.INDEXES_FILE) as indexes_file:
+            sql = indexes_file.read()
+            with self._get_db_connection() as conn:
+                cursor = conn.cursor()
+                cursor.executescript(sql)
+                conn.commit()
+
     def execute(self):
         self._create_tables()
 
@@ -126,3 +136,5 @@ class FeedDatabase:
             for filename in files:
                 if filekey in filename:
                     self._import_data(filename, tablename)
+        
+        self._create_indexes()

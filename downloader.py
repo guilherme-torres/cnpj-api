@@ -111,7 +111,3 @@ class Downloader:
         ])
         self._extract_files()
         self._clear_temp_files()
-
-if __name__ == "__main__":
-    downloader = Downloader()
-    asyncio.run(downloader.execute())

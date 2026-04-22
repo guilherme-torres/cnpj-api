@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS simples (
 );
 
 CREATE TABLE IF NOT EXISTS socios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
     cnpj_basico TEXT,
     identificador_de_socio TEXT,
     nome_do_socio_ou_razao_social TEXT,
@@ -94,5 +93,6 @@ CREATE TABLE IF NOT EXISTS socios (
     representante_legal TEXT,
     nome_do_representante TEXT,
     qualificacao_do_representante_legal TEXT,
-    faixa_etaria TEXT
+    faixa_etaria TEXT,
+    PRIMARY KEY (cnpj_basico, identificador_de_socio, cnpj_cpf_do_socio)
 );
